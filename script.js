@@ -83,6 +83,21 @@ jQuery.Deferred exception: require is not defined ReferenceError: require is not
     console.log("RESPONSE-PD:", response);
   });
 
+  let keyword = "real";
+
+  let queryURL =
+    "https://api.harvardartmuseums.org/object?q=keyword=" +
+    keyword +
+    "&hasimage=1&apikey=b257eb60-b88c-11ea-a178-2f68d1bc3c57";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    let imageUrl = response.records[0].primaryimageurl;
+    console.log(imageUrl);
+  });
   /* The above AJX call results in following error: Nevertheless issuing pull request so it can be in master and debugged 
   index.html:1 Access to XMLHttpRequest at 'https://apis.paralleldots.com/v4/keywords_batch' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
 apis.paralleldots.com/v4/keywords_batch:1 Failed to load resource: net::ERR_FAILED */

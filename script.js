@@ -13,6 +13,15 @@ $.ajax({
   // Log the queryURL
   console.log("queryURL-OVH:", queryURL);
   console.log("reponse-OVH:", responseOVH);
+  console.log("reponse-OVH.lyrics:", responseOVH.lyrics);
+  let inputText = responseOVH.lyrics;
+  let inputTextArr = [];
+  const re = /\s|\n/;
+  inputTextArr = inputText.split(re);
+
+  let datainputToPD = "text=" + JSON.stringify(inputTextArr);
+
+  console.log(inputTextArr);
   /* comment out the following as we get following due to
 require not deined :
 jQuery.Deferred exception: require is not defined ReferenceError: require is not defined
@@ -31,29 +40,47 @@ jQuery.Deferred exception: require is not defined ReferenceError: require is not
     .catch((error) => {
       console.log(error);
     });  */
-
+  let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
   /* As many stack overflow pages suggest, let us try now AJAX equivalent as curl is not supported in javascript */
-  $.ajax({
-    url: "https://apis.paralleldots.com/v4/keywords_batch",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "Authorization",
-        "Basic " + btoa("apikey:eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ")
-      );
+  // $.ajax({
+  //   url:
+  //     "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch",
+  //   /*   beforeSend: function (xhr) {
+  //     xhr.setRequestHeader(
+  //       "Authorization",
+  //       "Basic " + btoa("apikey:eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ")
+  //     ); */
+  //   form: { text: datainputToPD, api_key: API_KEY },
+  //   type: "POST",
+  //   // dataType: "json",
+  //   // contentType: "application/json",
+  //   // processData: false,
+  //   //  data: datainputToPD,
+  //   success: function (responsePD) {
+  //     console.log("responsePD:", responsePD);
+  //     alert(JSON.stringify(responsePD));
+  //   },
+  //   error: function (err) {
+  //     console.log("err:", err);
+  //     alert("Cannot get data");
+  //   },
+  // });
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch",
+    method: "POST",
+    headers: {
+      "x-rapidapi-host": "paralleldots-text-analysis-v1.p.rapidapi.com",
+      "x-rapidapi-key": "94e04ada5amshd58bd1c7b9b9a08p19c7fajsnfd7aba141134",
+      "content-type": "text/html",
     },
-    type: "POST",
-    dataType: "json",
-    contentType: "application/json",
-    processData: false,
-    data: responseOVH,
-    success: function (responsePD) {
-      console.log("responsePD:", responsePD);
-      alert(JSON.stringify(responsePD));
-    },
-    error: function (err) {
-      console.log("err:", err);
-      alert("Cannot get data");
-    },
+    data: { datainputToPD },
+  };
+  $.ajax(settings).done(function (response) {
+    console.log("RESPONSE-PD:", response);
   });
 
   /* The above AJX call results in following error: Nevertheless issuing pull request so it can be in master and debugged 

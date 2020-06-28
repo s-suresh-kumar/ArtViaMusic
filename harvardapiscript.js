@@ -1,4 +1,4 @@
-let keyword = "education sarcasm control";
+let keyword = "fear";
 
 let queryURL =
   "https://api.harvardartmuseums.org/object?q=keyword=" +
@@ -10,7 +10,12 @@ $.ajax({
   method: "GET",
 }).then(function (response) {
   console.log(response);
-  let thisItem = response.records[0];
+  let thisItem;
+  if (response.records[0].primaryimageurl !== null) {
+    thisItem = response.records[0];
+  } else {
+    thisItem = response.records[1];
+  }
   //provides the image url to show the image
   let imageUrl = thisItem.primaryimageurl;
   console.log(imageUrl);

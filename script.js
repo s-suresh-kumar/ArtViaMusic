@@ -23,7 +23,7 @@
 let queryURL =
   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Queen/Crazy%20Little%20Thing%20Called%20Love";
 
-// Here we run our AJAX call to the OpenWeatherMap API
+// Here we run our AJAX call to the lyricsovh api
 $.ajax({
   url: queryURL,
   method: "GET",
@@ -43,76 +43,17 @@ $.ajax({
   let datainputToPD = /*"text=" + */ JSON.stringify(inputTextArr);
 
   console.log("inputTextArr:", inputTextArr);
-  /* comment out the following as we get following due to
-require not deined :
-jQuery.Deferred exception: require is not defined ReferenceError: require is not defined
-    at Object.<anonymous> (file:///D:/suresh/uncbc/zoom/codingbootcamp/ArtViaMusic/script.js:16:14)
 
-  const pd = require("paralleldots");
-
-  // Be sure to set your API key
-  pd.apiKey = eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ;
-  pd.keywords(
-    "For the Yankees, it took a stunning comeback after being down 2-0 to the Indians in the American League Division Series. For the Astros, it took beating Chris Sale to top the Red Sox."
-  )
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });  */
-  //Lisa's key
+  // prepare for parallel dots api
+  //Lisa's key for parallel dots
   let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
-
-  /* As many stack overflow pages suggest, let us try now AJAX equivalent as curl is not supported in javascript */
-  // $.ajax({
-  //   url:
-  //     "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch",
-  //   /*   beforeSend: function (xhr) {
-  //     xhr.setRequestHeader(
-  //       "Authorization",
-  //       "Basic " + btoa("apikey:eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ")
-  //     ); */
-  //   form: { text: datainputToPD, api_key: API_KEY },
-  //   type: "POST",
-  //   // dataType: "json",
-  //   // contentType: "application/json",
-  //   // processData: false,
-  //   //  data: datainputToPD,
-  //   success: function (responsePD) {
-  //     console.log("responsePD:", responsePD);
-  //     alert(JSON.stringify(responsePD));
-  //   },
-  //   error: function (err) {
-  //     console.log("err:", err);
-  //     alert("Cannot get data");
-  //   },
-  // });
-  /* Latest CARL code that gave 500 error */
-  // var settings = {
-  //   async: true,
-  //   crossDomain: true,
-  //   url:
-  //     "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch",
-  //   method: "POST",
-  //   headers: {
-  //     "x-rapidapi-host": "paralleldots-text-analysis-v1.p.rapidapi.com",
-  //     "x-rapidapi-key": "94e04ada5amshd58bd1c7b9b9a08p19c7fajsnfd7aba141134",
-  //     "content-type": "text/html",
-  //   },
-  //   data: { datainputToPD },
-  // };
-  // $.ajax(settings).done(function (response) {
-  //   console.log("RESPONSE-PD:", response);
-  // });
-
   const url =
     "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
   const text = JSON.stringify([
     "For the Yankees, it took a stunning comeback after being down 2-0 to the Indians in the American League Division Series. For the Astros, it took beating Chris Sale to top the Red Sox.",
     "U.S. stocks edged higher on Friday, with the S&P 500 hitting a more than five-month high, as gains in industrials and other areas offset a drop in financials. Fred Katayama reports.",
   ]);
-  //const api_key = "8018f3VOtIeYFqytXnBsN9FVvYNWqyYpGmMZeLpVln8";
+
   window.alert("about to call the api");
   const $form = $("<form>", {
     enctype: "multipart/form-data",
@@ -157,28 +98,8 @@ jQuery.Deferred exception: require is not defined ReferenceError: require is not
       window.alert("error");
     },
   });
-
-  // let keyword = "real";
-
-  // let hqueryURL =
-  //   "https://api.harvardartmuseums.org/object?q=keyword=" +
-  //   keyword +
-  //   "&hasimage=1&apikey=b257eb60-b88c-11ea-a178-2f68d1bc3c57";
-
-  // $.ajax({
-  //   url: hqueryURL,
-  //   method: "GET",
-  // }).then(function (response) {
-  //   console.log(response);
-  //   let imageUrl = response.records[0].primaryimageurl;
-  //   console.log(imageUrl);
-  // });
-  /* The above AJX call results in following error: Nevertheless issuing pull request so it can be in master and debugged 
-  index.html:1 Access to XMLHttpRequest at 'https://apis.paralleldots.com/v4/keywords_batch' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
-apis.paralleldots.com/v4/keywords_batch:1 Failed to load resource: net::ERR_FAILED */
 });
 
-// feed them into Parallel Dots API ajax
 // generate keywords -- array
 
 // feed that into Harvard Art Museums API ajax

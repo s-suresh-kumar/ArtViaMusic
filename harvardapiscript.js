@@ -15,8 +15,8 @@ $.ajax({
   let imageUrl = thisItem.primaryimageurl;
   console.log(imageUrl);
   let image = $("<img>");
-  image.attr("src", imageUrl);
-  $("body").append(image);
+  $("imageDiv").attr("src", imageUrl);
+
   // pulls the title of the piece
   let title = thisItem.title;
   console.log(title);

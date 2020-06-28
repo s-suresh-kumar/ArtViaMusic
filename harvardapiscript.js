@@ -1,4 +1,4 @@
-let keyword = "wall brick classroom";
+let keyword = "wall brick";
 
 let queryURL =
   "https://api.harvardartmuseums.org/object?q=keyword=" +

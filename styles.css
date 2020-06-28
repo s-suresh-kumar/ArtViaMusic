@@ -1,5 +1,5 @@
 .navBar {
-  background-color: #009cde;
+  background-color: #033280;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -34,11 +34,39 @@ Removes the underline with text decoration = none.*/
   margin-top: 20px;
   font-weight: bold;
   color: white;
+  font-family: "Dancing Script", cursive;
 }
-/*Set your custom screen width here replacing 700*/
 
+/* background image */
+body {
+  background: url(imagetransparent.jpg) top center no-repeat;
+  background-size: cover;
+  min-height: 680px;
+  width: 100%;
+  z-index: -1;
+}
+
+.main {
+  padding-top: 75px;
+  padding-left: 25px;
+  position: center;
+}
+
+#button {
+  color: white;
+  background-color: #033280;
+  border-color: #033280;
+}
+
+#footer {
+  padding: 5px;
+  color: white;
+  background-color: #033280;
+}
+
+/*Set your custom screen width here replacing 700*/
 @media (max-width: 700px) {
-  /*Ignores the first link (which is Home) in the div and       applies 'display = none' to everything else.   Basically hiding everything but Home*/
+  /*Ignores the first link (which is Home) in the div and applies 'display = none' to everything else.   Basically hiding everything but Home*/
   .navBar a:not(:first-child) {
     display: none;
   }

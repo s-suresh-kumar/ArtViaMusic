@@ -82,7 +82,12 @@ $(document).ready(function () {
               break;
             } else {
               console.log(
-                "keyword " + (j + 1) + " is: " + recdKeywords[i].keyword
+                "keyword " +
+                  (j + 1) +
+                  " is: " +
+                  recdKeywords[i].keyword +
+                  " confidence score is : " +
+                  recdKeywords[i].confidence_score
               );
               keyword += recdKeywords[i].keyword;
               keyword += " ";

@@ -8,11 +8,11 @@ $(document).ready(function () {
 
     "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Blondie/Call%20Me",
 
-    "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20Brick%20in%20The%20Wall",
+    "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20brick%20in%20the%20wall",
 
     "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Michael%20Jackson/Rock%20With%20You",
 
-    "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/The%20Captain%20and%20Tennille/Do%20That%20to%20Me%20One%20More%20Time",
+    "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Captain%20%26%20Tennille/Do%20That%20to%20Me%20One%20More%20Time",
 
     "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Olivia%20Newton-John/Magic",
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
       const url =
         "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
 
-      window.alert("about to call the api");
+      // window.alert("about to call the api");
       const $form = $("<form>", {
         enctype: "multipart/form-data",
         method: "post",
@@ -67,7 +67,7 @@ $(document).ready(function () {
         cache: false,
         timeout: 2 * 800000,
         success: function (data) {
-          window.alert(JSON.stringify(data));
+          //  window.alert(JSON.stringify(data));
           console.log("success!!", data);
           let recdKeywords = data.keywords[0];
           const sortedKeywords = recdKeywords.sort((a, b) => {

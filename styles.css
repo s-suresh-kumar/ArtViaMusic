@@ -52,10 +52,18 @@ body {
   position: center;
 }
 
+#searchBox {
+  border-color: #033280;
+}
+
 #button {
   color: white;
   background-color: #033280;
   border-color: #033280;
+}
+
+#imageDiv {
+  max-width: 100%;
 }
 
 #footer {

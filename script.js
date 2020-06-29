@@ -2,26 +2,23 @@
 // grab lyrics -- make them object/array
 // example: https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Coldplay/Adventure%20of%20a%20Lifetime
 // let queryURL = "api.lyrics.ovh/suggest/";
+const qURL = [
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Coldplay/Adventure%20of%20a%20Lifetime",
 
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Coldplay/Adventure%20of%20a%20Lifetime";
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Blondie/Call%20Me";
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20Brick%20in%20The%20Wall";
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Blondie/Call%20Me",
 
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Michael%20Jackson/Rock%20With%20You";
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20Brick%20in%20The%20Wall",
 
-/* did not work  begin*/
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/The%20Captain%20and%Tennille/Do%20That%20to%20Me%20One%20More%20Time";
-// let queryURL =
-//   "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Olivia-Newton-John/Magic";
-/* did not work  end*/
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Michael%20Jackson/Rock%20With%20You",
 
-let queryURL =
-  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Queen/Crazy%20Little%20Thing%20Called%20Love";
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/The%20Captain%20and%Tennille/Do%20That%20to%20Me%20One%20More%20Time",
+
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Olivia-Newton-John/Magic",
+
+  "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Queen/Crazy%20Little%20Thing%20Called%20Love",
+];
+
+queryURL = qURL[Math.floor(Math.random() * qURL.length)];
 
 // Here we run our AJAX call to the lyricsovh api
 $.ajax({
@@ -36,11 +33,9 @@ $.ajax({
   inputText = inputText.replace(/\n\s*\n/g, "\n");
   console.log("inputText:", inputText);
   let inputTextArr = [];
-  //const re = /\s|\n/;
-  const re = /\n/;
   inputTextArr = inputText.split();
 
-  let datainputToPD = /*"text=" + */ JSON.stringify(inputTextArr);
+  let datainputToPD = JSON.stringify(inputTextArr);
 
   console.log("inputTextArr:", inputTextArr);
 
@@ -49,10 +44,6 @@ $.ajax({
   let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
   const url =
     "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
-  const text = JSON.stringify([
-    "For the Yankees, it took a stunning comeback after being down 2-0 to the Indians in the American League Division Series. For the Astros, it took beating Chris Sale to top the Red Sox.",
-    "U.S. stocks edged higher on Friday, with the S&P 500 hitting a more than five-month high, as gains in industrials and other areas offset a drop in financials. Fred Katayama reports.",
-  ]);
 
   window.alert("about to call the api");
   const $form = $("<form>", {
@@ -76,8 +67,26 @@ $.ajax({
     success: function (data) {
       window.alert(JSON.stringify(data));
       console.log("success!!", data);
+      let recdKeywords = data.keywords[0];
+      const sortedKeywords = recdKeywords.sort((a, b) => {
+        return a.confidence_score * 1 - b.confidence_score * 1;
+      });
 
-      let keyword = "education sarcasm control";
+      let keyword = "";
+      let j = 0;
+
+      for (let i = recdKeywords.length - 1; i >= 0; i--) {
+        if (j > 2) {
+          break;
+        } else {
+          console.log("keyword " + (j + 1) + " is: " + recdKeywords[i].keyword);
+          keyword += recdKeywords[i].keyword;
+          keyword += " ";
+          j++;
+        }
+      }
+      console.log("Keyword to harvard museum api is: " + keyword);
+      //  let keyword = "education sarcasm control";
 
       let queryURL =
         "https://api.harvardartmuseums.org/object?q=keyword=" +
@@ -103,13 +112,15 @@ $.ajax({
 
         // pulls the title of the piece
         let title = thisItem.title;
-        console.log(title);
+        console.log("TITLE:", title);
         //pulls the medium of the piece
         let medium = thisItem.medium;
-        console.log(medium);
+        console.log("MEDIUM", medium);
         //gets the artist's name
-        let artist = thisItem.people[0].name;
-        console.log(artist);
+        if (thisItem.peopleCount > 0) {
+          let artist = thisItem.people[0].name;
+          console.log("ARTIST", artist);
+        }
         //provides three options for how to pull the date, depending on what is provided in the api
         let date;
         let period = thisItem.period;

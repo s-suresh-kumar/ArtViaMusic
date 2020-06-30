@@ -1,4 +1,4 @@
-let keyword = "education sarcasm control";
+let keyword = "dog blue";
 
 let queryURL =
   "https://api.harvardartmuseums.org/object?q=keyword=" +
@@ -15,7 +15,7 @@ $.ajax({
   let imageUrl = thisItem.primaryimageurl;
   console.log(imageUrl);
   let image = $("<img>");
-  $("imageDiv").attr("src", imageUrl);
+  $("#art").attr("src", imageUrl);
 
   // pulls the title of the piece
   let title = thisItem.title;

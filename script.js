@@ -21,6 +21,22 @@ $(document).ready(function () {
 
   queryURL = qURL[Math.floor(Math.random() * qURL.length)];
 
+  $("#button").on("click", function () {
+    let title = $("#title").val();
+    let artist = $("#artist").val();
+
+    console.log(title, artist);
+
+    let queryURL = "https://api.lyrics.ovh/v1/" + artist + "/" + title;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  });
+
   // Here we run our AJAX call to the lyricsovh api
   $.ajax({
     url: queryURL,

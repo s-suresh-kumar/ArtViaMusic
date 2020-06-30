@@ -27,7 +27,7 @@
       <form>
         <div class="row">
           <div class="twelve">
-            <input type="text" placeholder="Enter a song title" required="" />
+            <input id="searchBox" type="text" placeholder="Enter a song title" required="" />
           </div>
         </div>
 
@@ -50,11 +50,16 @@
       <div class="container">
         <div class="row">
           <div class="twelve columns">
-            <img id=imageDiv alt=""></img>
+            <img id="imageDiv" alt=""></img>
           </div>
+        <div id="desc" class="row">Description</div>
         <div class="row">
-          <div class=two-thirds column>Description</div>  
-          <div class=one-third column>Source</div>
+          <div id="title" class="two-thirds column">Title</div>
+          <div id="artist" class="one-third column">Artist</div>
+        </div>
+        <div class="row">
+          <div id="medium" class="two-thirds column">Medium</div>
+          <div id="date" class="one-third column">Date</div>
         </div>
         </div>
       </div>
@@ -67,16 +72,6 @@
         About this project
       </footer>
     </div>
-
-    <!-- search box (trim, val) -->
-
-    <!-- after search  -->
-    <!-- header with Art Via Music & search bar -->
-    <!-- page refreshes with returned image in large box -->
-    <!-- below that, two columns -->
-    <!-- column 1: terms that returned the art -->
-    <!-- column 2: description of art & artist -->
-    <!-- final row that gives the current location of the art -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="script.js"></script>

@@ -113,11 +113,20 @@ $(document).ready(function () {
               let medium = "";
               let artist = "";
               let period = "";
+              let description = "";
               if ("primaryimageurl" in response.records[0]) {
-                if (response.records[0].primaryimageurl !== null) {
+                if (response.records[0].primaryimageurl != null) {
                   thisItem = response.records[0];
+                  console.log(
+                    "thisItem is response.records[0]: ",
+                    response.records[0]
+                  );
                 } else {
                   thisItem = response.records[1];
+                  console.log(
+                    "thisItem is response.records[1]: ",
+                    response.records[1]
+                  );
                 }
               }
 
@@ -129,54 +138,97 @@ $(document).ready(function () {
               } else {
                 console.log("primaryimageurl missing for this art");
               }
+              const infoNotAvail = ": -----";
+              // pulls the description of the piece
+              if ("description" in thisItem) {
+                if (thisItem.description == null) {
+                  $("#desc").append(infoNotAvail);
+                  console.log("Description missing for this art");
+                } else {
+                  description = thisItem.description;
+                  $("#desc").append(": " + description);
+                  console.log("DESCRIPTION is :", description);
+                }
+              } else {
+                $("#desc").append(infoNotAvail);
+                console.log("Description missing for this art");
+              }
 
               // pulls the title of the piece
               if ("title" in thisItem) {
-                title = thisItem.title;
-                console.log("TITLE is :", title);
+                if (thisItem.title == null) {
+                  $("#title").append(infoNotAvail);
+                  console.log("title missing for this art");
+                } else {
+                  title = thisItem.title;
+                  $("#title").append(": " + title);
+                  console.log("TITLE is :", title);
+                }
               } else {
+                $("#title").append(infoNotAvail);
                 console.log("title missing for this art");
               }
               //pulls the medium of the piece
               if ("medium" in thisItem) {
-                medium = thisItem.medium;
-                console.log("MEDIUM is :", medium);
+                if (this.medium == null) {
+                  $("#medium").append(infoNotAvail);
+                  console.log("medium missing for this art");
+                } else {
+                  medium = thisItem.medium;
+                  $("#medium").append(": " + medium);
+                  console.log("MEDIUM is :", medium);
+                }
               } else {
+                $("#medium").append(infoNotAvail);
                 console.log("medium missing for this art");
               }
               //gets the artist's name
               if ("peopleCount" in thisItem) {
                 if (thisItem.peopleCount > 0) {
                   artist = thisItem.people[0].name;
+                  $("#artist").append(": " + artist);
                   console.log("ARTIST is :", artist);
                 } else {
+                  $("#artist").append(infoNotAvail);
                   console.log("artist missing for this art");
                 }
+              } else {
+                $("#artist").append(infoNotAvail);
+                console.log("artist missing for this art");
               }
               //provides three options for how to pull the date, depending on what is provided in the api
               let date = "";
               if ("period" in thisItem) {
                 period = thisItem.period;
+
                 //the first way will get the exact year it was made
                 if ("dated" in thisItem) {
-                  if (thisItem.dated !== null) {
+                  if (thisItem.dated != null) {
                     date = thisItem.dated;
-
+                    $("#date").append(": " + date);
                     console.log(title + " was made in " + date);
                   }
                 }
                 //the second will provide the century it was made in
                 else if ("century" in thisItem) {
-                  if (thisItem.century !== null) {
+                  if (thisItem.century != null) {
                     date = thisItem.century;
+                    $("#date").append(": " + century);
                     console.log(title + " was made in the " + date);
                   }
                 }
                 //if neither the date or century is available, it'll get the general period it was created in
                 else {
-                  console.log(title + " was made in the " + period);
+                  if (period == null) {
+                    $("#date").append(infoNotAvail);
+                    console.log("period missing for this art");
+                  } else {
+                    $("#date").append(": " + period);
+                    console.log(title + " was made in the " + period);
+                  }
                 }
               } else {
+                $("#date").append(infoNotAvail);
                 console.log("period missing for this art");
               }
             })

@@ -145,6 +145,12 @@ $(document).ready(function () {
               }
 
               //provides the image url to show the image
+              if (thisItem == null) {
+                alert("could not get image");
+                return;
+              }
+
+              //provides the image url to show the image
               if ("primaryimageurl" in thisItem) {
                 let imageUrl = thisItem.primaryimageurl;
                 console.log("Image url is :" + imageUrl);

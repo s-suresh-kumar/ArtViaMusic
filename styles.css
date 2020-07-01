@@ -66,6 +66,12 @@ body {
   max-width: 100%;
 }
 
+.darkText {
+  font-weight: 600;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: larger;
+}
+
 #footer {
   padding: 5px;
   color: white;

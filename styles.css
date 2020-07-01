@@ -66,6 +66,10 @@ body {
   max-width: 100%;
 }
 
+.imageResult {
+  padding-top: 25px;
+}
+
 .darkText {
   font-weight: 600;
   font-family: "Source Sans Pro", sans-serif;

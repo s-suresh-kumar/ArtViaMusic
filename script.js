@@ -110,7 +110,8 @@ $(document).ready(function () {
                     (j + 1) +
                     " is: " +
                     recdKeywords[i].keyword +
-                    " confidence score is : " +
+                    " ," +
+                    "confidence score is : " +
                     recdKeywords[i].confidence_score
                 );
                 keyword += recdKeywords[i].keyword;
@@ -132,25 +133,29 @@ $(document).ready(function () {
             })
               .then(function (response) {
                 console.log(response);
-                let thisItem;
+                let thisItem = null;
                 let title = "";
                 let medium = "";
                 let artist = "";
                 let period = "";
                 let description = "";
 
-                if (response.records[0].primaryimageurl != null) {
-                  thisItem = response.records[0];
-                  console.log(
-                    "thisItem is response.records[0]: ",
-                    response.records[0]
-                  );
-                } else {
-                  thisItem = response.records[1];
-                  console.log(
-                    "thisItem is response.records[1]: ",
-                    response.records[1]
-                  );
+                for (let i = 0; i < response.records.length - 1; i++) {
+                  if ("primaryimageurl" in response.records[i]) {
+                    if (response.records[i].primaryimageurl != null) {
+                      thisItem = response.records[i];
+                      console.log(
+                        "thisItem is response.records[" + i + "]",
+                        response.records[i]
+                      );
+                      break;
+                    }
+                  }
+                }
+
+                if (thisItem == null) {
+                  alert("could not get image");
+                  return;
                 }
 
                 //provides the image url to show the image

@@ -1,5 +1,5 @@
 # ArtViaMusic
-[![Thumbnail](assets/images/ArtViaMusic-thumbnail.png)](https://s-suresh-kumar.github.io/ArtViaMusic/)
+[![Thumbnail](assets/images/ArtViaMusic-thumbnail.jpg)](https://s-suresh-kumar.github.io/ArtViaMusic/)
 
 Many people are familiar with music. Fewer people have the same level of familiarity with works of art. This web app allows a user to input the name of a song from which the lyrics are returned, keywords identified & a museum search conducted. The user is then presented with a piece of art with full museum description.
 

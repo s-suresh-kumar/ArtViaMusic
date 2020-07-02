@@ -90,7 +90,6 @@ $(document).ready(function () {
           contentType: false,
           cache: false,
           timeout: 800000,
-          async: false,
           success: function (data) {
             //  window.alert(JSON.stringify(data));
             console.log("success!!", data);

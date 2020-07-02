@@ -66,8 +66,8 @@ $(document).ready(function () {
         console.log("inputTextArr:", inputTextArr);
 
         // prepare for parallel dots api
-        //Lisa's key for parallel dots
-        let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
+        //Lisa's key for parallel dots - eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ
+        let API_KEY = "20KDtwcmz6HxY8jKBwiJjjxsKhUloFwixjswvaO4k04";
         const url =
           "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
 

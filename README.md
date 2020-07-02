@@ -44,4 +44,4 @@ The script.js adds the dynamic behavior to the respective page. The script.js is
 
 ## Possible Improvements and extensions
 
-  In future we would like to store the search history in localStorage and be able to recall history items for re-display. We can try exploring other AI APIs and or other endpoints within the same AI API for extracting keyword towards HarvardMuseumAPI. In future the app may be extended to play the found lyrics as music and or display lyrics in a side bar. If possible we would like to incorporate suggest (predictive) API, so that user does not end up giving wrong song names and artist names.
+  In the future we would like to store the search history in localStorage and be able to recall history items for re-display. We can try exploring other AI APIs or other endpoints within the same AI API for extracting keyword towards HarvardMuseumAPI. In the future the app may be extended to play the found lyrics as music and/or display lyrics in a side bar. If possible we would like to incorporate suggest (predictive) API, so that the user does not end up giving wrong song names and artist names.

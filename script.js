@@ -89,7 +89,8 @@ $(document).ready(function () {
           processData: false,
           contentType: false,
           cache: false,
-          timeout: 2 * 800000,
+          timeout: 800000,
+          async: false,
           success: function (data) {
             //  window.alert(JSON.stringify(data));
             console.log("success!!", data);
@@ -140,6 +141,12 @@ $(document).ready(function () {
                 let period = "";
                 let description = "";
 
+                const descDiv = $("#desc");
+                const titleDiv = $("#Title");
+                const mediumDiv = $("#medium");
+                const artistDiv = $("#Artist");
+                const dateDiv = $("#date");
+
                 for (let i = 0; i < response.records.length - 1; i++) {
                   if ("primaryimageurl" in response.records[i]) {
                     if (response.records[i].primaryimageurl != null) {
@@ -166,62 +173,64 @@ $(document).ready(function () {
                 } else {
                   console.log("primaryimageurl missing for this art");
                 }
-                const infoNotAvail = ": -----";
+                const infoNotAvail = ":  -----";
                 // pulls the description of the piece
                 if ("description" in thisItem) {
                   if (thisItem.description == null) {
-                    $("#desc").append(infoNotAvail);
+                    descDiv.text("Description" + infoNotAvail);
                     console.log("Description missing for this art");
                   } else {
                     description = thisItem.description;
-                    $("#desc").append(": " + description);
+                    descDiv.text("Description:  " + description);
                     console.log("DESCRIPTION is :", description);
                   }
                 } else {
-                  $("#desc").append(infoNotAvail);
+                  descDiv.text("Description" + infoNotAvail);
                   console.log("Description missing for this art");
                 }
 
                 // pulls the title of the piece
+                titleDiv.attr("background-color", "#E8F0FE");
                 if ("title" in thisItem) {
                   if (thisItem.title == null) {
-                    $("#title").append(infoNotAvail);
+                    titleDiv.text("title" + infoNotAvail);
                     console.log("title missing for this art");
                   } else {
                     title = thisItem.title;
-                    $("#title").append(": " + title);
+                    titleDiv.text("title:  " + title);
                     console.log("TITLE is :", title);
                   }
                 } else {
-                  $("#title").append(infoNotAvail);
+                  titleDiv.text("title" + infoNotAvail);
                   console.log("title missing for this art");
                 }
                 //pulls the medium of the piece
                 if ("medium" in thisItem) {
                   if (this.medium == null) {
-                    $("#medium").append(infoNotAvail);
+                    mediumDiv.text("medium" + infoNotAvail);
                     console.log("medium missing for this art");
                   } else {
                     medium = thisItem.medium;
-                    $("#medium").append(": " + medium);
+                    mediumDiv.text("medium:  " + medium);
                     console.log("MEDIUM is :", medium);
                   }
                 } else {
-                  $("#medium").append(infoNotAvail);
+                  mediumDiv.text("medium" + infoNotAvail);
                   console.log("medium missing for this art");
                 }
                 //gets the artist's name
                 if ("peopleCount" in thisItem) {
                   if (thisItem.peopleCount > 0) {
                     artist = thisItem.people[0].name;
-                    $("#artist").append(": " + artist);
+                    artistDiv.text("artist:  " + artist);
                     console.log("ARTIST is :", artist);
                   } else {
-                    $("#artist").append(infoNotAvail);
+                    artistDiv.text("artist", infoNotAvail);
                     console.log("artist missing for this art");
                   }
                 } else {
-                  $("#artist").append(infoNotAvail);
+                  artistDiv.text("artist" + infoNotAvail);
+
                   console.log("artist missing for this art");
                 }
                 //provides three options for how to pull the date, depending on what is provided in the api
@@ -233,7 +242,7 @@ $(document).ready(function () {
                   if ("dated" in thisItem) {
                     if (thisItem.dated != null) {
                       date = thisItem.dated;
-                      $("#date").append(": " + date);
+                      dateDiv.text("date:  " + date);
                       console.log(title + " was made in " + date);
                     }
                   }
@@ -241,22 +250,22 @@ $(document).ready(function () {
                   else if ("century" in thisItem) {
                     if (thisItem.century != null) {
                       date = thisItem.century;
-                      $("#date").append(": " + century);
+                      dateDiv.text("date:  " + century);
                       console.log(title + " was made in the " + date);
                     }
                   }
                   //if neither the date or century is available, it'll get the general period it was created in
                   else {
                     if (period == null) {
-                      $("#date").append(infoNotAvail);
+                      $("#date").text("date" + infoNotAvail);
                       console.log("period missing for this art");
                     } else {
-                      $("#date").append(": " + period);
+                      dateDiv.text(":  " + period);
                       console.log(title + " was made in the " + period);
                     }
                   }
                 } else {
-                  $("#date").append(infoNotAvail);
+                  dateDiv.text("date" + infoNotAvail);
                   console.log("period missing for this art");
                 }
               })

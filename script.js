@@ -9,19 +9,33 @@ $(document).ready(function () {
 
   function onload() {
     const qURL = [
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Coldplay/Adventure%20of%20a%20Lifetime",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Coldplay/Adventure%20of%20a%20Lifetime",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Blondie/Call%20Me",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Blondie/Call%20Me",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20brick%20in%20the%20wall",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Pink%20Floyd/Another%20brick%20in%20the%20wall",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Michael%20Jackson/Rock%20With%20You",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Michael%20Jackson/Rock%20With%20You",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Captain%20%26%20Tennille/Do%20That%20to%20Me%20One%20More%20Time",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Captain%20%26%20Tennille/Do%20That%20to%20Me%20One%20More%20Time",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Olivia%20Newton-John/Magic",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Olivia%20Newton-John/Magic",
 
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Queen/Crazy%20Little%20Thing%20Called%20Love",
+      // "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/Queen/Crazy%20Little%20Thing%20Called%20Love",
+
+      "https://api.lyrics.ovh/v1/Coldplay/Adventure%20of%20a%20Lifetime",
+
+      "https://api.lyrics.ovh/v1/Blondie/Call%20Me",
+
+      "https://api.lyrics.ovh/v1/Pink%20Floyd/Another%20brick%20in%20the%20wall",
+
+      "https://api.lyrics.ovh/v1/Michael%20Jackson/Rock%20With%20You",
+
+      "https://api.lyrics.ovh/v1/Captain%20%26%20Tennille/Do%20That%20to%20Me%20One%20More%20Time",
+
+      "https://api.lyrics.ovh/v1/Olivia%20Newton-John/Magic",
+
+      "https://api.lyrics.ovh/v1/Queen/Crazy%20Little%20Thing%20Called%20Love",
     ];
 
     queryURLOnLoad = qURL[Math.floor(Math.random() * qURL.length)];
@@ -36,11 +50,7 @@ $(document).ready(function () {
 
     console.log(title, artist);
 
-    let queryURLOnClick =
-      "https://private-anon-d20202d0cc-lyricsovh.apiary-proxy.com/v1/" +
-      artist +
-      "/" +
-      title;
+    let queryURLOnClick = "https://api.lyrics.ovh/v1/" + artist + "/" + title;
     findArt(queryURLOnClick);
   });
 
@@ -66,7 +76,8 @@ $(document).ready(function () {
         console.log("inputTextArr:", inputTextArr);
 
         // prepare for parallel dots api
-        //Lisa's key for parallel dots - eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ
+        //Lisa's key for parallel dots -
+        //let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
         let API_KEY = "20KDtwcmz6HxY8jKBwiJjjxsKhUloFwixjswvaO4k04";
         const url =
           "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
@@ -121,7 +132,7 @@ $(document).ready(function () {
             }
             console.log("Keyword to harvard museum api is: " + keyword);
             //  let keyword = "education sarcasm control";
-
+            //keyword = "Saturday July Eleven Twenty Twenty";
             let queryURL =
               "https://api.harvardartmuseums.org/object?q=keyword=" +
               keyword +

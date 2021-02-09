@@ -10,7 +10,9 @@ function findlyrics() {
 
   console.log(title, artist);
 
-  let queryURL = "https://api.lyrics.ovh/v1/" + artist + "/" + title;
+  let queryURL = "
+  
+  " + artist + "/" + title;
 
   $.ajax({
     url: queryURL,

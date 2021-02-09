@@ -78,7 +78,8 @@ $(document).ready(function () {
         // prepare for parallel dots api
         //Lisa's key for parallel dots -
         //let API_KEY = "eILsVmFHayC9wtOifRXODHNqBmVwcMea34apHw42JMQ";
-        let API_KEY = "20KDtwcmz6HxY8jKBwiJjjxsKhUloFwixjswvaO4k04";
+        // let API_KEY = "20KDtwcmz6HxY8jKBwiJjjxsKhUloFwixjswvaO4k04";
+        let API_KEY = "9nFJBqLF57VtxiShdUeClieRokcJUeHjjvMZXfXSnjg";
         const url =
           "https://cors-anywhere.herokuapp.com/https://apis.paralleldots.com/v4/keywords_batch";
 
@@ -118,12 +119,12 @@ $(document).ready(function () {
               } else {
                 console.log(
                   "keyword " +
-                    (j + 1) +
-                    " is: " +
-                    recdKeywords[i].keyword +
-                    " ," +
-                    "confidence score is : " +
-                    recdKeywords[i].confidence_score
+                  (j + 1) +
+                  " is: " +
+                  recdKeywords[i].keyword +
+                  " ," +
+                  "confidence score is : " +
+                  recdKeywords[i].confidence_score
                 );
                 keyword += recdKeywords[i].keyword;
                 keyword += " ";
